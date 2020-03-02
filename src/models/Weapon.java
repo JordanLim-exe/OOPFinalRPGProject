@@ -28,10 +28,9 @@ public class Weapon extends Item {
 
     @Override
     public String toString() {
-        return "Weapon{" +
-                "weaponDurability=" + getWeaponDurability() +
-                ", weaponDamageModifier=" + getWeaponDamageModifier() +
-                '}';
+        return "(Weapon)" + super.toString() + "." +
+                " It also has a weapon durability " + getWeaponDurability() +
+                " and has a bonus damage of " + getWeaponDamageModifier();
     }
 
 }

@@ -1,6 +1,6 @@
 package prog;
 
-import controllers.RPGController;
+import controllers.*;
 
 public class Main {
 

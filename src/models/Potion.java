@@ -5,7 +5,7 @@ public class Potion extends Item {
 
     public Potion(String name, String description, int attributeModifier) {
         super(name, description);
-        this.attributeModifier = attributeModifier;
+       setAttributeModifier(attributeModifier);
     }
 
     public int getAttributeModifier() {
@@ -18,8 +18,7 @@ public class Potion extends Item {
 
     @Override
     public String toString() {
-        return "Potion{" +
-                "attributeModifier=" + attributeModifier +
-                '}';
+        return "(Potion)" + super.toString() + "." +
+                " It also has an attribute modifier of " + getAttributeModifier();
     }
 }

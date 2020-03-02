@@ -15,4 +15,9 @@ public class Enemy extends RPGCharacter implements IActionable {
     public int defend(int attack) {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

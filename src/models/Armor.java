@@ -1,6 +1,6 @@
 package models;
 
-public class Armor extends Item{
+public class Armor extends Item {
 
     private int armorDurability;
     private int healthModifier;
@@ -29,9 +29,8 @@ public class Armor extends Item{
 
     @Override
     public String toString() {
-        return "Armor{" + super.toString() +
-                "armorDurability=" + getArmorDurability() +
-                ", healthModifier=" + getHealthModifier() +
-                '}';
+        return "(Armor)" + super.toString() + "." +
+                " It also has a armor durability " + getArmorDurability() +
+                " and has a health bonus of " + getHealthModifier();
     }
 }

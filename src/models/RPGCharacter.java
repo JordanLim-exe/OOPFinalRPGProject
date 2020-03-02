@@ -52,7 +52,7 @@ public class RPGCharacter {
     }
 
     public int roll(int numOfSides, int numOfDice, int modifier){
-       return 1;
+        return 2;
     }
 
     @Override
