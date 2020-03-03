@@ -25,11 +25,11 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
     public Item[] getEquipInventory(){
-        return new Item[0];
+        return equipInventory;
     }
 
     public Item[] getUseInventory(){
-        return new Item[0];
+        return useInventory;
     }
 
     public Item[] returnFullInventory(){
@@ -44,5 +44,10 @@ public class Player extends RPGCharacter implements IActionable{
     @Override
     public int defend(int attack) {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "(Player)" + super.toString();
     }
 }

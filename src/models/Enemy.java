@@ -8,7 +8,7 @@ public class Enemy extends RPGCharacter implements IActionable {
 
     @Override
     public int attack() {
-        return 0;
+
     }
 
     @Override
@@ -18,6 +18,6 @@ public class Enemy extends RPGCharacter implements IActionable {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "(Enemy)" + super.toString();
     }
 }

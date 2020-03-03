@@ -52,16 +52,15 @@ public class RPGCharacter {
     }
 
     public int roll(int numOfSides, int numOfDice, int modifier){
-        return 2;
+
     }
 
     @Override
     public String toString() {
-        return "RPGCharacter{" +
-                "name='" + getName() + '\'' +
-                ", hp=" + getHp() +
-                ", atk=" + getAtk() +
-                ", def=" + getDef() +
-                '}';
+        return "RPGCharacter: " + "\n" + "Name: " + getName() +
+                "\nHp: " + getHp() +
+                "\nAtk: " + getAtk() +
+                "\nDef: " + getDef();
+
     }
 }
