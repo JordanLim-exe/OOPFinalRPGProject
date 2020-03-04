@@ -14,7 +14,7 @@ public class RPGDisplay {
         for(String[] strings: m.getMapView()){
             System.out.println();
             for(String s : strings){
-                System.out.print(s);
+                System.out.print("  " + s + "  ");
             }
         }
     }
