@@ -8,11 +8,12 @@ public class Enemy extends RPGCharacter implements IActionable {
 
     @Override
     public int attack() {
-
+        roll(2,2,2);
+        return getAtk();
     }
 
     @Override
-    public int defend(int attack) {
+    public int defend() {
         return 0;
     }
 
