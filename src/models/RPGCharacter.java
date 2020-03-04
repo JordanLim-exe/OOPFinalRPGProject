@@ -1,4 +1,6 @@
 package models;
+import java.util.Random;
+
 
 public class RPGCharacter {
     protected String name;
@@ -10,7 +12,7 @@ public class RPGCharacter {
         setName(name);
         setHp(hp);
         setAtk(atk);
-       setDef(def);
+        setDef(def);
     }
 
     public RPGCharacter(){}
@@ -52,7 +54,9 @@ public class RPGCharacter {
     }
 
     public int roll(int numOfSides, int numOfDice, int modifier){
-
+        Random rng = new Random();
+        int max = numOfDice * numOfSides;
+        return rng.nextInt(max - numOfDice + 1) + numOfDice + modifier;
     }
 
     @Override
@@ -61,6 +65,5 @@ public class RPGCharacter {
                 "\nHp: " + getHp() +
                 "\nAtk: " + getAtk() +
                 "\nDef: " + getDef();
-
     }
 }

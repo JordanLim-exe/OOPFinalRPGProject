@@ -1,5 +1,11 @@
 package models;
 
+import com.sun.org.glassfish.external.statistics.RangeStatistic;
+import lib.ConsoleIO;
+
+import java.util.Arrays;
+import java.util.Random;
+
 public class Player extends RPGCharacter implements IActionable{
 
     private Item[] equipInventory;
@@ -16,12 +22,9 @@ public class Player extends RPGCharacter implements IActionable{
         super(name);
     }
 
-    public void runAway(){
-
-    }
-
     public void changeWeapon(){
-
+        //Need to access the players getEquipInventory
+        //Replace original item with the item the player has selected
     }
 
     public Item[] getEquipInventory(){
@@ -36,13 +39,28 @@ public class Player extends RPGCharacter implements IActionable{
         return new Item[0];
     }
 
-    @Override
-    public int attack() {
-        return 0;
+    public void runAway(){
+        Random rng = new Random();
+        int min = 1;
+        int max = 2;
+        int run = rng.nextInt(max - min + 1) + min;
+
+        if(run == 1) {
+            //Successfully escaped from battle
+            //Go back into map view
+        }else{
+            //Didn't escape from battle
+            //Return them to fight menu
+        }
     }
 
     @Override
-    public int defend(int attack) {
+    public int attack() {
+      return 0;
+    }
+
+    @Override
+    public int defend() {
         return 0;
     }
 
@@ -50,4 +68,6 @@ public class Player extends RPGCharacter implements IActionable{
     public String toString() {
         return "(Player)" + super.toString();
     }
+
+
 }
