@@ -3,6 +3,7 @@ package controllers;
 import models.Enemy;
 import models.Map;
 import models.Player;
+import view.RPGDisplay;
 
 public class RPGController {
 
@@ -20,11 +21,12 @@ public class RPGController {
     }
 
     public void runStartUp() {
-
+map.movePlayer("d");
+RPGDisplay.printMap(map);
     }
 
     public int runTurn() {
-
+return 0;
     }
 
     public void battleStart(int bossDifficulty) {
@@ -36,6 +38,6 @@ public class RPGController {
     }
 
     public boolean result() {
-
+return false;
     }
 }

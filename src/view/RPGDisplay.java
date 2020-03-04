@@ -1,5 +1,7 @@
 package view;
 
+import models.Map;
+
 public class RPGDisplay {
 
     public static String startDisplay() {
@@ -8,8 +10,13 @@ public class RPGDisplay {
         return returnMessage;
     }
 
-    public static void printMap() {
-        //TODO Implement method
+    public static void printMap(Map m) {
+        for(String[] strings: m.getMapView()){
+            System.out.println();
+            for(String s : strings){
+                System.out.print(s);
+            }
+        }
     }
 
     public static void displayInventory() {

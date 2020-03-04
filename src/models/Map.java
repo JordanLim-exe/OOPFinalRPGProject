@@ -23,9 +23,8 @@ public class Map {
                     {"-", "-", "-", "-", "-", "-", "-", "-", "W", "#", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
             };
     private String[][] mapView;
-    private int playerPositionX;
-    private int playerPositionY;
-    private boolean isBossSpace;
+    private int playerPositionX = 9;
+    private int playerPositionY = 9;
 
     public String[][] getMainMap() {
         return mainMap;
@@ -43,7 +42,30 @@ public class Map {
         return playerPositionY;
     }
 
-    public boolean isBossSpace() {
-        return isBossSpace;
+    public String movePlayer(String direction){
+        if(direction.equals("d")){
+            playerPositionX++;
+        }
+        else if(direction.equals("s")){
+            playerPositionY--;
+        }
+        else if(direction.equals("w")){
+            playerPositionY++;
+        }
+        else if(direction.equals("a")){
+            playerPositionX--;
+        }
+        alterMapView();
+        return mainMap[playerPositionY][playerPositionX];
+    }
+
+    public void alterMapView(){
+        mapView = new String[][]{
+                {mainMap[playerPositionY-2][playerPositionX-2],mainMap[playerPositionY-2][playerPositionX-1],mainMap[playerPositionY-2][playerPositionX],mainMap[playerPositionY-2][playerPositionX+1],mainMap[playerPositionY-2][playerPositionX+2] },
+                {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] },
+                {mainMap[playerPositionY][playerPositionX-2],mainMap[playerPositionY][playerPositionX-1],mainMap[playerPositionY][playerPositionX],mainMap[playerPositionY][playerPositionX+1],mainMap[playerPositionY][playerPositionX+2]},
+                {mainMap[playerPositionY+1][playerPositionX-2],mainMap[playerPositionY+1][playerPositionX-1],mainMap[playerPositionY+1][playerPositionX],mainMap[playerPositionY+1][playerPositionX+1],mainMap[playerPositionY+1][playerPositionX+2]},
+                {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] }
+        };
     }
 }
