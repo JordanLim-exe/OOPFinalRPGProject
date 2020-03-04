@@ -4,7 +4,7 @@ import models.Map;
 
 public class RPGDisplay {
 
-    public static String startDisplay() {
+    public static String startDisplay(boolean newGame) {
         //TODO Implement method
         String returnMessage = "METHOD NOT IMPLEMENTED";
         return returnMessage;
