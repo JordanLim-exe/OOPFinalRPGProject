@@ -13,7 +13,7 @@ public class Enemy extends RPGCharacter implements IActionable {
     }
 
     @Override
-    public int defend() {
+    public int defend(int attack) {
         return 0;
     }
 
