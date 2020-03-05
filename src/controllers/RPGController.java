@@ -140,7 +140,7 @@ public class RPGController {
     }
 
     public static boolean menu() {
-
+        return false;
     }
 
     public static void test() {
