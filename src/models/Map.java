@@ -48,6 +48,14 @@ public class Map {
         return playerPositionY;
     }
 
+    public void setPlayerPositionX(int playerPositionX) {
+        this.playerPositionX = playerPositionX;
+    }
+
+    public void setPlayerPositionY(int playerPositionY) {
+        this.playerPositionY = playerPositionY;
+    }
+
     public String movePlayer(String direction){
         if(direction.equals("d")){
             playerPositionX++;

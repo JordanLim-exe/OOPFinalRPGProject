@@ -36,7 +36,23 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
     public Item[] returnFullInventory(){
-        return new Item[0];
+        int length = getEquipInventory().length + getUseInventory().length;
+
+        Item[] fullInventory = new Item[length];
+        int pos = 0;
+        for (Item item : getUseInventory()) {
+            fullInventory[pos] = item;
+            pos++;
+        }
+        for (Item item : getUseInventory()) {
+            fullInventory[pos] = item;
+            pos++;
+        }
+
+        return fullInventory;
+    }
+}
+
     }
 
     public void runAway(){

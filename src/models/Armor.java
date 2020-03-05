@@ -30,7 +30,7 @@ public class Armor extends Item {
     @Override
     public String toString() {
         return "(Armor)" + super.toString() + "." +
-                " It also has a armor durability " + getArmorDurability() +
+                " It also has an armor durability " + getArmorDurability() +
                 " and has a health bonus of " + getHealthModifier();
     }
 }
