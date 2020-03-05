@@ -1,36 +1,53 @@
 package controllers;
 
-import models.Enemy;
-import models.FileReader;
-import models.Map;
-import models.Player;
+import models.*;
 import view.RPGDisplay;
 
-import java.io.File;
+import java.io.*;
 
 public class RPGController {
 
-    private static Player player1;
+    private static Player player1 = new Player();
     private static Enemy currentEnemy;
     private static Map map;
-    private static String saveStateString;
+    private static boolean gameContinues = true;
+    private static Game saveState;
 
     public static void run() {
         runStartUp();
-        boolean gameContinues = true;
 
         do{
             gameContinues = runTurn();
         }while(gameContinues);
+
+        runCreateSave();
     }
 
     public static void runStartUp() {
-        boolean exists = new File("savestate/save.txt").exists();
+        boolean saveExists = true;
+        String fileName = "Save.txt";
+        try {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
 
-        saveStateString = new FileReader().read("journals/save");
-        String choice = RPGDisplay.startDisplay(exists);
+            // Method for deserialization of object
+            saveState = (Game) in.readObject();
 
-        saveStateString = "0000000000000";
+            in.close();
+            file.close();
+        }catch (IOException | ClassNotFoundException ioe) {
+            saveExists = false;
+        }
+
+        int choice = RPGDisplay.startDisplay(saveExists);
+
+        if(choice == 0) {
+            gameContinues = false;
+        }
+        else if(choice == 1) {
+
+        }
 
     }
 
@@ -48,5 +65,24 @@ public class RPGController {
 
     public static boolean result() {
         return true;
+    }
+
+    public static void runCreateSave() {
+        saveState = new Game(player1, map.getPlayerPositionX(), map.getPlayerPositionY());
+        String fileName = "Save.txt";
+
+        try {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // Method for serialization of object
+            out.writeObject(saveState);
+
+            out.close();
+            file.close();
+        } catch (IOException ioe) {
+            System.out.println("IOException is caught");
+        }
     }
 }
