@@ -36,7 +36,9 @@ public class RPGController {
 
             in.close();
             file.close();
-        }catch (IOException | ClassNotFoundException ioe) {
+        }catch (ClassNotFoundException | FileNotFoundException nA) {
+            saveExists = false;
+        }catch (IOException ioe) {
             saveExists = false;
         }
 
@@ -46,7 +48,14 @@ public class RPGController {
             gameContinues = false;
         }
         else if(choice == 1) {
-
+            player1 = new Player(RPGDisplay.promptForName());
+            map.setPlayerPositionX(9);
+            map.setPlayerPositionY(9);
+        }
+        else if(choice == 2) {
+            player1 = saveState.getUser();
+            map.setPlayerPositionX(saveState.getPlayerPositionX());
+            map.setPlayerPositionY(saveState.getPlayerPositionY());
         }
 
     }
