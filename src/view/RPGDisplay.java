@@ -36,6 +36,15 @@ public class RPGDisplay {
         System.out.println("-----------------------------");
     }
 
+    public static void printMainMap(Map m) {
+            for(String[] strings: m.getMapView()){
+                System.out.println();
+                for(String s : strings){
+                    System.out.print(" " + s + " ");
+                }
+            }
+    }
+
     public static void displayFullInventory(Player p) {
         System.out.println("Your inventory: ");
         for(Item i : p.returnFullInventory()){
