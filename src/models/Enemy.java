@@ -11,7 +11,9 @@ public class Enemy extends RPGCharacter implements IActionable {
         //Takes in roll method
         //If statements depending on condition
         //Check if there's a weapon
-        return 0;
+        int hit = 0;
+        hit = roll(1,20,atk);
+        return hit;
     }
 
     @Override

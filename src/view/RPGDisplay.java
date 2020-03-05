@@ -91,7 +91,11 @@ public class RPGDisplay {
     }
 
     public static int promptEquip(Player p){
-        return 0;
+        String[] options = new String[p.getEquipInventory().length];
+        for (int i = 0; i < options.length; i++) {
+            options[i] = p.getEquipInventory()[i].toString();
+        }
+        return ConsoleIO.promptForMenuSelection(options,true);
     }
 
     public static void displayMessage(String msg) {

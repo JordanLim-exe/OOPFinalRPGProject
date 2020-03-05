@@ -25,6 +25,7 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
     public void changeEquipment(int index){
+        index++;
         //Need to access the players getEquipInventory
         //Replace original item with the item the player has selected
         if(equipInventory[index].getClass().getSimpleName().equals("Weapon")){
@@ -65,7 +66,7 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
 
-    public void runAway(){
+    public boolean runAway(){
         Random rng = new Random();
         int min = 1;
         int max = 2;
@@ -74,9 +75,11 @@ public class Player extends RPGCharacter implements IActionable{
         if(run == 1) {
             //Successfully escaped from battle
             //Go back into map view
+            return true;
         }else{
             //Didn't escape from battle
             //Return them to fight menu
+            return false;
         }
     }
 
