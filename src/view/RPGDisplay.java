@@ -43,6 +43,10 @@ public class RPGDisplay {
         }
     }
 
+    public static String promptForName(){
+        return ConsoleIO.promptForString("Please enter the name you would like to go by: ");
+    }
+
     public static String promptForDirection() {
         boolean isValid = false;
         String direction;
