@@ -61,7 +61,18 @@ public class RPGController {
     }
 
     public static boolean runTurn() {
-        return true;
+        boolean boolReturn = true;
+        RPGDisplay.printMap(map);
+        String choice = RPGDisplay.promptForDirection();
+        if(choice.equals("0")) {
+            if(menu()) {
+                boolReturn = false;
+            }
+        }
+        else {
+            map.movePlayer(choice);
+        }
+        return boolReturn;
     }
 
     public static void battleStart(int bossDifficulty) {
@@ -93,5 +104,13 @@ public class RPGController {
         } catch (IOException ioe) {
             System.out.println("IOException is caught");
         }
+    }
+
+    public static boolean menu() {
+
+    }
+
+    public static void test() {
+
     }
 }
