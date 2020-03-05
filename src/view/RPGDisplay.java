@@ -26,23 +26,45 @@ public class RPGDisplay {
         return choice;
     }
 
+    public static int mainMenu(){
+        String[] options ={
+              "Change equipment",
+              "Use item",
+              "Go back"
+        };
+        return ConsoleIO.promptForMenuSelection(options, true);
+    }
+
     public static void printMap(Map m) {
-        for(String[] strings: m.getMapView()){
-            System.out.println("-----------------------------");
-            for(String s : strings){
-                System.out.print(" | " + s + " | ");
+        int playerX = 0;
+        int playerY = 0;
+        for (int j = 4; j > -1; j--) {
+            String[] strings = m.getMapView()[j];
+            playerX = 0;
+            playerY++;
+            System.out.println("\n  --------------------------------");
+            for (int i = 4; i > -1; i--) {
+                String s = strings[i];
+                playerX++;
+                if(playerX == 3 && playerY == 3){
+                    System.out.print("  |  " + "P");
+                }else {
+                    System.out.print("  |  " + s);
+                }
             }
+            System.out.print("  | ");
         }
-        System.out.println("-----------------------------");
+        System.out.println("\n  --------------------------------");
     }
 
     public static void printMainMap(Map m) {
-            for(String[] strings: m.getMapView()){
+            for(String[] strings: m.getMainMap()){
                 System.out.println();
                 for(String s : strings){
                     System.out.print(" " + s + " ");
                 }
             }
+        System.out.println();
     }
 
     public static void displayFullInventory(Player p) {

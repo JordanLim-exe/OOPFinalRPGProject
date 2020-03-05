@@ -61,10 +61,10 @@ public class Map {
             playerPositionX++;
         }
         else if(direction.equals("s")){
-            playerPositionY--;
+            playerPositionY++;
         }
         else if(direction.equals("w")){
-            playerPositionY++;
+            playerPositionY--;
         }
         else if(direction.equals("a")){
             playerPositionX--;
@@ -74,12 +74,19 @@ public class Map {
     }
 
     public void alterMapView(){
-        mapView = new String[][]{
-                {mainMap[playerPositionY-2][playerPositionX-2],mainMap[playerPositionY-2][playerPositionX-1],mainMap[playerPositionY-2][playerPositionX],mainMap[playerPositionY-2][playerPositionX+1],mainMap[playerPositionY-2][playerPositionX+2] },
-                {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] },
-                {mainMap[playerPositionY][playerPositionX-2],mainMap[playerPositionY][playerPositionX-1],mainMap[playerPositionY][playerPositionX],mainMap[playerPositionY][playerPositionX+1],mainMap[playerPositionY][playerPositionX+2]},
-                {mainMap[playerPositionY+1][playerPositionX-2],mainMap[playerPositionY+1][playerPositionX-1],mainMap[playerPositionY+1][playerPositionX],mainMap[playerPositionY+1][playerPositionX+1],mainMap[playerPositionY+1][playerPositionX+2]},
-                {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] }
-        };
+int mapX = 0;
+int mapY = 0;
+        for (int i = -2; i < 3; i++) {
+            mapX=0;
+            for (int j = -2; j < 3; j++) {
+                try {
+                    mapView[mapY][mapX] = mainMap[playerPositionY - i][playerPositionX - j];
+                }catch(ArrayIndexOutOfBoundsException ai){
+                    mapView[mapY][mapX] = "X";
+                }
+                mapX++;
+            }
+            mapY++;
+        }
     }
 }
