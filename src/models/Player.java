@@ -2,6 +2,7 @@ package models;
 
 import com.sun.org.glassfish.external.statistics.RangeStatistic;
 import lib.ConsoleIO;
+import view.RPGDisplay;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -74,10 +75,12 @@ public class Player extends RPGCharacter implements IActionable{
 
         if(run == 1) {
             //Successfully escaped from battle
+            System.out.println("You have successfully escaped the battle. Returning to the world...");
             //Go back into map view
             return true;
         }else{
             //Didn't escape from battle
+            System.out.println("You tried to escape but you couldn't. LOL");
             //Return them to fight menu
             return false;
         }
@@ -95,14 +98,7 @@ public class Player extends RPGCharacter implements IActionable{
 
     @Override
     public int defend(int attack) {
-        if(attack < hp){
-            //Subtract health and replace original health
-            //Resume battle sequence
-        }else{
-            //Died
-            //Return to main menu
-        }
-        return 0;
+       return hp - (attack / 2);
     }
 
     @Override
