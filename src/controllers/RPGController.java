@@ -4,17 +4,18 @@ import models.Enemy;
 import models.FileReader;
 import models.Map;
 import models.Player;
+import view.RPGDisplay;
 
 import java.io.File;
 
 public class RPGController {
 
-    private Player player1;
-    private Enemy currentEnemy;
-    private Map map;
-    private String saveStateString;
+    private static Player player1;
+    private static Enemy currentEnemy;
+    private static Map map;
+    private static String saveStateString;
 
-    public void run() {
+    public static void run() {
         runStartUp();
         boolean gameContinues = true;
 
@@ -23,29 +24,29 @@ public class RPGController {
         }while(gameContinues);
     }
 
-    public void runStartUp() {
+    public static void runStartUp() {
         boolean exists = new File("savestate/save.txt").exists();
-        if(exists) {
-            saveStateString = new FileReader().read("journals/save");
-        }
-        else {
-            saveStateString = "0000000000000";
-        }
+
+        saveStateString = new FileReader().read("journals/save");
+        String choice = RPGDisplay.startDisplay(exists);
+
+        saveStateString = "0000000000000";
+
     }
 
-    public boolean runTurn() {
+    public static boolean runTurn() {
         return true;
     }
 
-    public void battleStart(int bossDifficulty) {
+    public static void battleStart(int bossDifficulty) {
 
     }
 
-    public void battleLoop() {
+    public static void battleLoop() {
 
     }
 
-    public boolean result() {
+    public static boolean result() {
         return true;
     }
 }
