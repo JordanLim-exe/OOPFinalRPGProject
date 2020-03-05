@@ -8,12 +8,21 @@ public class Enemy extends RPGCharacter implements IActionable {
 
     @Override
     public int attack() {
-        roll(2,2,2);
-        return getAtk();
+        //Takes in roll method
+        //If statements depending on condition
+        //Check if there's a weapon
+        return 0;
     }
 
     @Override
     public int defend(int attack) {
+        if(attack < hp){
+            //Subtract health and replace original health
+            //Resume battle sequence
+        }else{
+            //Died
+            //Return to main menu
+        }
         return 0;
     }
 
