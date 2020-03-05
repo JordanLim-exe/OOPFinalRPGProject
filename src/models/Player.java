@@ -10,6 +10,8 @@ public class Player extends RPGCharacter implements IActionable{
 
     private Item[] equipInventory;
     private Item[] useInventory;
+    private Weapon equippedWeapon;
+    private Armor equippedArmor;
 
     public Player() {
     }
@@ -22,9 +24,19 @@ public class Player extends RPGCharacter implements IActionable{
         super(name);
     }
 
-    public void changeWeapon(){
+    public void changeEquipment(int index){
         //Need to access the players getEquipInventory
         //Replace original item with the item the player has selected
+        if(equipInventory[index].getClass().getSimpleName().equals("Weapon")){
+            Item currentWeapon = equippedWeapon;
+            equippedWeapon = (Weapon) equipInventory[index];
+            equipInventory[index] = currentWeapon;
+        } else{
+            Item currentArmor = equippedArmor;
+            equippedArmor = (Armor) equipInventory[index];
+            equipInventory[index] = currentArmor;
+        }
+
     }
 
     public Item[] getEquipInventory(){
@@ -51,9 +63,7 @@ public class Player extends RPGCharacter implements IActionable{
 
         return fullInventory;
     }
-}
 
-    }
 
     public void runAway(){
         Random rng = new Random();
@@ -75,7 +85,9 @@ public class Player extends RPGCharacter implements IActionable{
         //Takes in roll method
         //If statements depending on condition
         //Check if there's a weapon
-      return 0;
+        int hit = 0;
+        hit = roll(1,20,equippedWeapon.getWeaponDamageModifier());
+      return hit;
     }
 
     @Override

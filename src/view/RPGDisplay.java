@@ -36,9 +36,23 @@ public class RPGDisplay {
         System.out.println("-----------------------------");
     }
 
-    public static void displayInventory(Player p) {
+    public static void displayFullInventory(Player p) {
         System.out.println("Your inventory: ");
         for(Item i : p.returnFullInventory()){
+            System.out.println(i.toString());
+        }
+    }
+
+    public static void displayEquipInventory(Player p) {
+        System.out.println("Your equippable inventory: ");
+        for(Item i : p.getEquipInventory()){
+            System.out.println(i.toString());
+        }
+    }
+
+    public static void displayUseInventory(Player p) {
+        System.out.println("Your consumable inventory: ");
+        for(Item i : p.getUseInventory()){
             System.out.println(i.toString());
         }
     }
@@ -51,12 +65,12 @@ public class RPGDisplay {
         boolean isValid = false;
         String direction;
         do {
-            String prompt = "Using wasd, please select the direction you would like to travel: ";
+            String prompt = "Using wasd, please select the direction you would like to travel, or input 0 for the menu: ";
             direction = ConsoleIO.promptForString(prompt);
-            if(direction.trim().equals("w")||direction.trim().equals("a")||direction.trim().equals("s")||direction.trim().equals("d")){
+            if(direction.trim().equals("w")||direction.trim().equals("a")||direction.trim().equals("s")||direction.trim().equals("d")||direction.trim().equals("0")){
                 isValid=true;
             } else{
-                System.out.println("Please input w, a, s, or d.");
+                System.out.println("Please input w, a, s, d, or 0.");
             }
         }while(!isValid);
 
@@ -65,7 +79,6 @@ public class RPGDisplay {
     }
 
     public static int printBattleMenu() {
-        //attack, def, use item, run away
         System.out.println("You have encountered an enemy. Choose one of the option below: ");
         String[] options = {
                 "Attack",
@@ -75,6 +88,10 @@ public class RPGDisplay {
         };
         int choice = ConsoleIO.promptForMenuSelection(options, false);
         return choice;
+    }
+
+    public static int promptEquip(Player p){
+        return 0;
     }
 
     public static void displayMessage(String msg) {
