@@ -4,6 +4,7 @@ import models.*;
 import view.RPGDisplay;
 
 import java.io.*;
+import java.util.Random;
 
 public class RPGController {
 
@@ -70,9 +71,41 @@ public class RPGController {
             }
         }
         else {
-            map.movePlayer(choice);
+            String playerArea = map.movePlayer(choice);
+            int check = checkForEvent(playerArea);
+            if(check <= 3 && check >= 0) {
+                battleStart(check);
+            }
+            else if(check == 4) {
+                player1.setHp(50);
+            }
+
         }
         return boolReturn;
+    }
+
+    public static int checkForEvent(String mapTile) {
+        Random rand = new Random();
+        int randChance = rand.nextInt(10);
+        int intReturn = -1;
+        if(mapTile.equals("D")) {
+            intReturn = 3;
+        }
+        else if(mapTile.equals("W") || mapTile.equals("T") || mapTile.equals("@")) {
+            intReturn = 4;
+        }
+        else if (randChance > 6) {
+            if(mapTile.equals("~")) {
+                intReturn = 0;
+            }
+            if(mapTile.equals("*")) {
+                intReturn = 1;
+            }
+            if(mapTile.equals("-")) {
+                intReturn = 2;
+            }
+        }
+        return intReturn;
     }
 
     public static void battleStart(int bossDifficulty) {
