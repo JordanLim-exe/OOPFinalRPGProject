@@ -13,6 +13,7 @@ public class Player extends RPGCharacter implements IActionable{
     private Item[] useInventory;
     private Weapon equippedWeapon;
     private Armor equippedArmor;
+    private Potion equippedPotion;
 
     public Player() {
     }
@@ -34,11 +35,16 @@ public class Player extends RPGCharacter implements IActionable{
             equippedWeapon = (Weapon) equipInventory[index];
             equipInventory[index] = currentWeapon;
             useInventory[index] = currentWeapon;
-        } else{
+        } else if(equipInventory[index].getClass().getSimpleName().equals("Armor")){
             Item currentArmor = equippedArmor;
             equippedArmor = (Armor) equipInventory[index];
             equipInventory[index] = currentArmor;
             useInventory[index] = currentArmor;
+        }else if(equipInventory[index].getClass().getSimpleName().equals("Potion")){
+            Potion currentPotion = equippedPotion;
+            equippedPotion = (Potion) equipInventory[index];
+            equipInventory[index] = currentPotion;
+            useInventory[index] = currentPotion;
         }
 
     }
