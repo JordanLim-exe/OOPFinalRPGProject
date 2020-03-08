@@ -33,10 +33,12 @@ public class Player extends RPGCharacter implements IActionable{
             Item currentWeapon = equippedWeapon;
             equippedWeapon = (Weapon) equipInventory[index];
             equipInventory[index] = currentWeapon;
+            useInventory[index] = currentWeapon;
         } else{
             Item currentArmor = equippedArmor;
             equippedArmor = (Armor) equipInventory[index];
             equipInventory[index] = currentArmor;
+            useInventory[index] = currentArmor;
         }
 
     }
