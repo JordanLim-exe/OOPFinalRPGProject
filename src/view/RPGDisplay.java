@@ -81,8 +81,15 @@ public class RPGDisplay {
         }
     }
 
-    public static String[] displayUseInventory(Player p) {
+    public static void displayUseInventory(Player p) {
         System.out.println("Your consumable inventory: ");
+        for(Item i : p.getUseInventory()){
+            System.out.println(i.toString());
+        }
+    }
+
+    public static int promptForConsumable(Player p){
+        System.out.println("Please select the consumable you would like to use: ");
         String[] options =new  String[p.getUseInventory().length];
         int counter = 0;
         for(Item i : p.getUseInventory()){
@@ -90,11 +97,6 @@ public class RPGDisplay {
             options[counter] = i.toString();
             counter++;
         }
-        return options;
-    }
-
-    public static int promptForConsumable(String[] options){
-        System.out.println("Please select the consumable you would like to use: ");
         return ConsoleIO.promptForMenuSelection(options, true);
     }
 
