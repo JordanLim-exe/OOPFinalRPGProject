@@ -34,20 +34,27 @@ public class Player extends RPGCharacter implements IActionable{
             Item currentWeapon = equippedWeapon;
             equippedWeapon = (Weapon) equipInventory[index];
             equipInventory[index] = currentWeapon;
-            useInventory[index] = currentWeapon;
         } else if(equipInventory[index].getClass().getSimpleName().equals("Armor")){
             Item currentArmor = equippedArmor;
             equippedArmor = (Armor) equipInventory[index];
             equipInventory[index] = currentArmor;
-            useInventory[index] = currentArmor;
-        }else if(equipInventory[index].getClass().getSimpleName().equals("Potion")){
-            Potion currentPotion = equippedPotion;
-            equippedPotion = (Potion) equipInventory[index];
-            equipInventory[index] = currentPotion;
-            useInventory[index] = currentPotion;
         }
 
+        }
+
+    public void useItem(int index) {
+        if (useInventory[index].getClass().getSimpleName().equals("Potion")) {
+            Potion currentPotion = equippedPotion;
+            equippedPotion = (Potion) useInventory[index];
+            useInventory[index] = currentPotion;
+            hp = hp + 25;
+
+            if (hp > 50) {
+                hp = 50;
+            }
+        }
     }
+
 
     public Item[] getEquipInventory(){
         return equipInventory;
