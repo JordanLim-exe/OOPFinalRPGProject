@@ -38,6 +38,11 @@ public class RPGCharacter implements Serializable {
         this.hp = hp;
     }
 
+    public void takesDamage(int atk){
+        int damageTaken = atk - def;
+        setHp(getHp() - damageTaken);
+    }
+
     public int getAtk() {
         return atk;
     }
