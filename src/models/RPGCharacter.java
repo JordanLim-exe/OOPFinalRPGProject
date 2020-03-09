@@ -1,8 +1,9 @@
 package models;
+import java.io.Serializable;
 import java.util.Random;
 
 
-public class RPGCharacter {
+public class RPGCharacter implements Serializable {
     protected String name;
     protected int hp;
     protected int atk;

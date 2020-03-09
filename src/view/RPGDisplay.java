@@ -96,8 +96,13 @@ public class RPGDisplay {
         String[] options =new  String[p.getUseInventory().length];
         int counter = 0;
         for(Item i : p.getUseInventory()){
-            System.out.println(i.toString());
-            options[counter] = i.toString();
+            if(i == null) {
+                System.out.println("N/A");
+            }
+            else {
+                System.out.println(i.toString());
+                options[counter] = i.toString();
+            }
             counter++;
         }
         return ConsoleIO.promptForMenuSelection(options, true);
@@ -107,11 +112,11 @@ public class RPGDisplay {
         return ConsoleIO.promptForString("Please enter the name you would like to go by: ");
     }
 
-    public static String promptForDirection() {
+    public static String promptForDirection(Player p) {
         boolean isValid = false;
         String direction;
         do {
-            String prompt = "Using wasd, please select the direction you would like to travel, or input 0 for the menu: ";
+            String prompt = p.getName() + "! Using wasd, please select the direction you would like to travel, or input 0 for the menu: ";
             direction = ConsoleIO.promptForString(prompt);
             if(direction.trim().equals("w")||direction.trim().equals("a")||direction.trim().equals("s")||direction.trim().equals("d")||direction.trim().equals("0")){
                 isValid=true;
@@ -124,8 +129,8 @@ public class RPGDisplay {
         return direction;
     }
 
-    public static int printBattleMenu(Enemy enemy) {
-        System.out.println("You have encountered " + enemy.getName() + "(" + enemy.getHp() + "). Choose one of the option below: ");
+    public static int printBattleMenu(Enemy enemy, Player player) {
+        System.out.println("You have encountered " + enemy.getName() + "(" + enemy.getHp() + "). You have " + player.getHp() + " HP remaining, Choose one of the option below: ");
         String[] options = {
                 "Attack",
                 "Defend",
@@ -139,7 +144,13 @@ public class RPGDisplay {
     public static int promptEquip(Player p){
         String[] options = new String[p.getEquipInventory().length];
         for (int i = 0; i < options.length; i++) {
-            options[i] = p.getEquipInventory()[i].toString();
+            if(p.getEquipInventory()[i] == null) {
+                String empty = "N/A";
+                options[i] = empty;
+            }
+            else {
+                options[i] = p.getEquipInventory()[i].toString();
+            }
         }
         return ConsoleIO.promptForMenuSelection(options,true);
     }

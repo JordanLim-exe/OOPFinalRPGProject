@@ -1,6 +1,8 @@
 package models;
 
-public class Armor extends Item {
+import java.io.Serializable;
+
+public class Armor extends Item implements Serializable {
 
     private int armorDurability;
     private int healthModifier;

@@ -4,10 +4,11 @@ import com.sun.org.glassfish.external.statistics.RangeStatistic;
 import lib.ConsoleIO;
 import view.RPGDisplay;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Player extends RPGCharacter implements IActionable{
+public class Player extends RPGCharacter implements IActionable, Serializable {
 
     private Item[] equipInventory = new Item[10];
     private Item[] useInventory = new Item[10];
@@ -29,17 +30,19 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
     public void changeEquipment(int index){
-        index++;
-        //Need to access the players getEquipInventory
-        //Replace original item with the item the player has selected
-        if (equipInventory[index].getClass().getSimpleName().equals("Weapon")) {
-            Item currentWeapon = equippedWeapon;
-            equippedWeapon = (Weapon) equipInventory[index];
-            equipInventory[index] = currentWeapon;
-        } else if (equipInventory[index].getClass().getSimpleName().equals("Armor")) {
-            Item currentArmor = equippedArmor;
-            equippedArmor = (Armor) equipInventory[index];
-            equipInventory[index] = currentArmor;
+        if(index != 0) {
+            index--;
+            //Need to access the players getEquipInventory
+            //Replace original item with the item the player has selected
+            if (equipInventory[index].getClass().getSimpleName().equals("Weapon")) {
+                Item currentWeapon = equippedWeapon;
+                equippedWeapon = (Weapon) equipInventory[index];
+                equipInventory[index] = currentWeapon;
+            } else if (equipInventory[index].getClass().getSimpleName().equals("Armor")) {
+                Item currentArmor = equippedArmor;
+                equippedArmor = (Armor) equipInventory[index];
+                equipInventory[index] = currentArmor;
+            }
         }
     }
 
@@ -103,20 +106,20 @@ public class Player extends RPGCharacter implements IActionable{
     }
 
     public void addItem(Item newItem) {
-        if(newItem.getClass().getSimpleName().equals("Armor") || newItem.getClass().getSimpleName().equals("Weapon")) {
+        if(newItem instanceof Armor || newItem instanceof Weapon) {
             boolean itemPlaced = false;
-            for(Item item : equipInventory) {
-               if(item == null && !itemPlaced) {
-                   item = newItem;
-                   itemPlaced = true;
-               }
+            for (int i = 0; i < 10; i++) {
+                if(equipInventory[i] == null && !itemPlaced) {
+                    equipInventory[i] = newItem;
+                    itemPlaced = true;
+                }
             }
         }
         else {
             boolean itemPlaced = false;
-            for(Item item : useInventory) {
-                if(item == null && !itemPlaced) {
-                    item = newItem;
+            for(int i = 0; i < 10; i++) {
+                if(useInventory[i] == null && !itemPlaced) {
+                    useInventory[i] = newItem;
                     itemPlaced = true;
                 }
             }
