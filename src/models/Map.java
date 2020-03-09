@@ -1,36 +1,38 @@
 package models;
 
 public class Map {
-    private String[][] mainMap =
-                   {{"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-                    {"-", "-", "W", "#", "#", "#", "#", "-", "-", "-", "T", "#", "#", "-", "-", "-", "-", "-", "-"},
-                    {"-", "-", "-", "-", "-", "-", "#", "-", "-", "-", "-", "#", "-", "-", "-", "-", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "#", "#", "#", "#", "#", "#", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "W", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "#", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "#", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "@", "#", "#", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "~", "~", "~", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "W", "#", "#", "#", "#", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "#", "T", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "*", "*", "-", "-", "-"},
-                    {"-", "-", "-", "-", "-", "-", "-", "-", "-", "#", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-                    {"-", "-", "-", "-", "-", "-", "-", "-", "-", "#", "#", "#", "#", "#", "#", "#", "#", "D", "-"},
-                    {"-", "-", "-", "-", "-", "-", "-", "-", "W", "#", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-            };
-    private int playerPositionX = 9;
-    private int playerPositionY = 9;
-    private String[][] mapView = new String[][]{
-            {mainMap[playerPositionY-2][playerPositionX-2],mainMap[playerPositionY-2][playerPositionX-1],mainMap[playerPositionY-2][playerPositionX],mainMap[playerPositionY-2][playerPositionX+1],mainMap[playerPositionY-2][playerPositionX+2] },
-            {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] },
-            {mainMap[playerPositionY][playerPositionX-2],mainMap[playerPositionY][playerPositionX-1],mainMap[playerPositionY][playerPositionX],mainMap[playerPositionY][playerPositionX+1],mainMap[playerPositionY][playerPositionX+2]},
-            {mainMap[playerPositionY+1][playerPositionX-2],mainMap[playerPositionY+1][playerPositionX-1],mainMap[playerPositionY+1][playerPositionX],mainMap[playerPositionY+1][playerPositionX+1],mainMap[playerPositionY+1][playerPositionX+2]},
-            {mainMap[playerPositionY-1][playerPositionX-2],mainMap[playerPositionY-1][playerPositionX-1],mainMap[playerPositionY-1][playerPositionX],mainMap[playerPositionY-1][playerPositionX+1],mainMap[playerPositionY-1][playerPositionX+2] }
-    };
+    private String[][] mainMap;
+    private int playerPositionX;
+    private int playerPositionY;
+    private String[][] mapView;
+
+    public Map() {
+        this.playerPositionX = 9;
+        this.playerPositionY = 9;
+        mainMap = new String[][]{
+                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                {"-", "-", "W", "#", "#", "#", "#", "-", "-", "-", "T", "#", "#", "-", "-", "-", "-", "-", "-"},
+                {"-", "-", "-", "-", "-", "-", "#", "-", "-", "-", "-", "#", "-", "-", "-", "-", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "#", "#", "#", "#", "#", "#", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "W", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "#", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "~", "~", "#", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "@", "#", "#", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "~", "~", "~", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "W", "#", "#", "#", "#", "#", "~", "~", "~", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "#", "T", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "*", "*", "*", "*", "*", "*", "#", "*", "*", "*", "*", "*", "*", "-", "-", "-"},
+                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "#", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                {"-", "-", "-", "-", "-", "-", "-", "-", "-", "#", "#", "#", "#", "#", "#", "#", "#", "D", "-"},
+                {"-", "-", "-", "-", "-", "-", "-", "-", "W", "#", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
+        };
+        mapView= new String[5][5];
+        alterMapView();
+    }
 
     public String[][] getMainMap() {
         return mainMap;
@@ -58,16 +60,32 @@ public class Map {
 
     public String movePlayer(String direction){
         if(direction.equals("d")){
-            playerPositionX++;
+            if(playerPositionX < 18) {
+                playerPositionX++;
+            } else{
+                System.out.println("You have hit the boundary");
+            }
         }
         else if(direction.equals("s")){
-            playerPositionY++;
+            if(playerPositionY < 18) {
+                playerPositionY++;
+            } else{
+                System.out.println("You have hit the boundary");
+            }
         }
         else if(direction.equals("w")){
-            playerPositionY--;
+            if(playerPositionY > 0) {
+                playerPositionY--;
+            } else{
+                System.out.println("You have hit the boundary");
+            }
         }
         else if(direction.equals("a")){
-            playerPositionX--;
+            if(playerPositionX > 0) {
+                playerPositionX--;
+            } else{
+                System.out.println("You have hit the boundary");
+            }
         }
         alterMapView();
         return mainMap[playerPositionY][playerPositionX];
