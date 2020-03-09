@@ -91,6 +91,7 @@ public class Map {
         return mainMap[playerPositionY][playerPositionX];
     }
 
+
     public void alterMapView(){
 int mapX = 0;
 int mapY = 0;
