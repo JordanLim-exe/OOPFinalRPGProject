@@ -40,7 +40,13 @@ public class RPGCharacter implements Serializable {
 
     public void takesDamage(int atk){
         int damageTaken = atk - def;
+
+        if(damageTaken < 0){
+            damageTaken = 0;
+        }
+
         setHp(getHp() - damageTaken);
+
     }
 
     public int getAtk() {
