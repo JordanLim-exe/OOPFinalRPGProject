@@ -18,13 +18,13 @@ public class RPGController {
     public static void run() {
         runStartUp();
 
-        do{
+        while(gameContinues){
             gameContinues = runTurn();
             if(player1.getHp() <= 0) {
                 gameContinues = false;
                 RPGDisplay.displayMessage("You have Died. GAME OVER");
             }
-        }while(gameContinues);
+        }
 
         if(player1.getHp() >= 1) {
             runCreateSave();
