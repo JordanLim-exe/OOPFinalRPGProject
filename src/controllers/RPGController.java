@@ -59,6 +59,7 @@ public class RPGController {
             player1 = new Player(RPGDisplay.promptForName(), 50, 5, 5);
             map.setPlayerPositionX(9);
             map.setPlayerPositionY(9);
+            runCreateSave();
         }
         else if(choice == 2) {
             player1 = saveState.getUser();
