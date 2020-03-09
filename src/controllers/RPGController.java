@@ -71,6 +71,7 @@ public class RPGController {
     public static boolean runTurn() {
         boolean boolReturn = true;
         RPGDisplay.printMap(map);
+        //Small update needed to fix commits
         String choice = RPGDisplay.promptForDirection(player1);
         if(choice.equals("0")) {
             if(menu()) {
