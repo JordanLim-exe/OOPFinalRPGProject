@@ -21,8 +21,8 @@ public class Player extends RPGCharacter implements IActionable, Serializable {
 
     public Player(String name, int hp, int atk, int def) {
         super(name, hp, atk, def);
-        equippedWeapon = new Weapon("None", "Just a Fist", 50, 0);
-        equippedArmor = new Armor("None", "Just the clothes on your back", 50, 0);
+        equippedWeapon = new Weapon("Your fist: ", "Just a Fist", 50, 0);
+        equippedArmor = new Armor("Your clothes: ", "Just the clothes on your back", 50, 0);
     }
 
     public Player(String name){

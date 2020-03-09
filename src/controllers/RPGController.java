@@ -144,25 +144,25 @@ public class RPGController {
                 if(chance == 1) {
                     int rank = rand.nextInt(3);
                     if(rank == 0) {
-                        player1.addItem(new Armor("Lesser Armor", " Better than regular clothing, not much else", 50, 10));
+                        player1.addItem(new Armor("Lesser Armor:", " Better than regular clothing, not much else", 50, 10));
                     }
                     else if(rank == 1) {
-                        player1.addItem(new Armor("Steel Armor", " Great for protecting the vitals, not good for large threats", 50, 20));
+                        player1.addItem(new Armor("Steel Armor:", " Great for protecting the vitals, not good for large threats", 50, 20));
                     }
                     else {
-                        player1.addItem(new Armor("God Armor", " The perfect choice for fighting the biggest of threats", 50, 35));
+                        player1.addItem(new Armor("God Armor:", " The perfect choice for fighting the biggest of threats", 50, 35));
                     }
                 }
                 if(chance == 2) {
                     int rank = rand.nextInt(3);
                     if(rank == 0) {
-                        player1.addItem(new Weapon("Lesser Sword", " Better than just your fists, feels off balance", 50, 10));
+                        player1.addItem(new Weapon("Lesser Sword:", " Better than just your fists, feels off balance", 50, 10));
                     }
                     else if(rank == 1) {
-                        player1.addItem(new Weapon("Steel Sword", " Great for general combat, not special but good enough", 50, 20));
+                        player1.addItem(new Weapon("Steel Sword:", " Great for general combat, not special but good enough", 50, 20));
                     }
                     else {
-                        player1.addItem(new Weapon("God Sword", " The perfect choice for fighting the biggest of threats", 50, 35));
+                        player1.addItem(new Weapon("God Sword:", " The perfect choice for fighting the biggest of threats", 50, 35));
                     }
                 }
                 RPGDisplay.itemAdded(chance);
