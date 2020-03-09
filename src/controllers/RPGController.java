@@ -80,12 +80,84 @@ public class RPGController {
     public static void battleStart(int bossDifficulty) {
         Random rand = new Random();
         if(bossDifficulty == 0) {
-            currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20) + 1, rand.nextInt(10) + 5, rand.nextInt(10) + 5);
+            currentEnemy = new Enemy("Lesser " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 1, rand.nextInt(10) + 5, rand.nextInt(10) + 5);
         }
+        else if(bossDifficulty == 1) {
+            currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20) + 10, rand.nextInt(10) + 10, rand.nextInt(10) + 5);
+        }
+        else if(bossDifficulty == 2) {
+            currentEnemy = new Enemy("Greater " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 20, rand.nextInt(10) + 15, rand.nextInt(10) + 10);
+        }
+        else if(bossDifficulty == 3) {
+            currentEnemy = new Enemy("Boss " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 40, rand.nextInt(10) + 20, rand.nextInt(10) + 15);
+        }
+        battleLoop();
     }
 
     public static void battleLoop() {
+        boolean battleContinues = true;
+        do {
+            if(!result()) {
+                battleContinues = false;
+            }
+            else {
+                int choice = RPGDisplay.printBattleMenu(currentEnemy);
+                if (choice == 4) {
+                    if(player1.runAway()) {
+                        battleContinues = false;
+                    }
+                    else{
+                        player1.setHp(player1.getHp() - currentEnemy.attack());
+                    }
+                } else if (choice == 3) {
+                    useItem();
+                    player1.setHp(player1.getHp() - currentEnemy.attack());
+                } else if (choice == 2) {
+                    player1.defend(currentEnemy.attack());
+                } else if (choice == 1) {
+                    currentEnemy.setHp(currentEnemy.getHp() - player1.attack());
+                    if (currentEnemy.getHp() <= 0) {
+                        battleContinues = false;
+                    }
+                    player1.setHp(player1.getHp() - currentEnemy.attack());
+                }
+            }
+        }while(battleContinues);
+        if(player1.getHp() >= 1) {
+            Random rand = new Random();
+            if(rand.nextInt(20) + 1 >= 12) {
+                int chance = rand.nextInt(3);
+                if(chance == 0) {
+                    player1.addItem(new Potion("Health Potion", "Heals you by 25 after use", 25));
 
+                }
+                if(chance == 1) {
+                    int rank = rand.nextInt(3);
+                    if(rank == 0) {
+                        player1.addItem(new Armor("Lesser Armor", "Better than regular clothing, not much else", 50, 10));
+                    }
+                    else if(rank == 1) {
+                        player1.addItem(new Armor("Steel Armor", "Great for protecting the vitals, not good for large threats", 50, 20));
+                    }
+                    else {
+                        player1.addItem(new Armor("God Armor", "The perfect choice for fighting the biggest of threats", 50, 35));
+                    }
+                }
+                if(chance == 2) {
+                    int rank = rand.nextInt(3);
+                    if(rank == 0) {
+                        player1.addItem(new Weapon("Lesser Sword", "Better than just your fists, feels off balance", 50, 10));
+                    }
+                    else if(rank == 1) {
+                        player1.addItem(new Weapon("Steel Sword", "Great for general combat, not special but good enough", 50, 20));
+                    }
+                    else {
+                        player1.addItem(new Weapon("God Sword", "The perfect choice for fighting the biggest of threats", 50, 35));
+                    }
+                }
+                RPGDisplay.itemAdded(chance);
+            }
+        }
 
     }
 
@@ -122,16 +194,26 @@ public class RPGController {
             endApp = true;
         }
         if(userChoice == 1) {
-            player1.changeEquipment(RPGDisplay.promptEquip(player1));
+            try {
+                player1.changeEquipment(RPGDisplay.promptEquip(player1));
+            } catch (NullPointerException npe) {
+                RPGDisplay.emptyArray();
+            }
         }
         if(userChoice == 2) {
-            useItem();
+            try {
+                useItem();
+            } catch (NullPointerException npe) {
+                RPGDisplay.emptyArray();
+            }
+
         }
         return endApp;
     }
 
     public static void useItem() {
-        //RPGDisplay.promptForConsumable(player1.)
+        int choice = RPGDisplay.promptForConsumable(player1);
+        player1.useItem(choice);
     }
 
     public static void determineEncounter(String tile) {

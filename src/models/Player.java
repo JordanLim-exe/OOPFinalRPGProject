@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Player extends RPGCharacter implements IActionable{
 
-    private Item[] equipInventory;
-    private Item[] useInventory;
+    private Item[] equipInventory = new Item[10];
+    private Item[] useInventory = new Item[10];
     private Weapon equippedWeapon;
     private Armor equippedArmor;
     private Potion equippedPotion;
@@ -20,6 +20,8 @@ public class Player extends RPGCharacter implements IActionable{
 
     public Player(String name, int hp, int atk, int def) {
         super(name, hp, atk, def);
+        equippedWeapon = new Weapon("None", "Just a Fist", 50, 0);
+        equippedArmor = new Armor("None", "Just the clothes on your back", 50, 0);
     }
 
     public Player(String name){
@@ -30,16 +32,15 @@ public class Player extends RPGCharacter implements IActionable{
         index++;
         //Need to access the players getEquipInventory
         //Replace original item with the item the player has selected
-        if(equipInventory[index].getClass().getSimpleName().equals("Weapon")){
+        if (equipInventory[index].getClass().getSimpleName().equals("Weapon")) {
             Item currentWeapon = equippedWeapon;
             equippedWeapon = (Weapon) equipInventory[index];
             equipInventory[index] = currentWeapon;
-        } else if(equipInventory[index].getClass().getSimpleName().equals("Armor")){
+        } else if (equipInventory[index].getClass().getSimpleName().equals("Armor")) {
             Item currentArmor = equippedArmor;
             equippedArmor = (Armor) equipInventory[index];
             equipInventory[index] = currentArmor;
         }
-
     }
 
     public void useItem(int index) {
@@ -101,13 +102,34 @@ public class Player extends RPGCharacter implements IActionable{
         }
     }
 
+    public void addItem(Item newItem) {
+        if(newItem.getClass().getSimpleName().equals("Armor") || newItem.getClass().getSimpleName().equals("Weapon")) {
+            boolean itemPlaced = false;
+            for(Item item : equipInventory) {
+               if(item == null && !itemPlaced) {
+                   item = newItem;
+                   itemPlaced = true;
+               }
+            }
+        }
+        else {
+            boolean itemPlaced = false;
+            for(Item item : useInventory) {
+                if(item == null && !itemPlaced) {
+                    item = newItem;
+                    itemPlaced = true;
+                }
+            }
+        }
+    }
+
     @Override
     public int attack() {
         //Takes in roll method
         //If statements depending on condition
         //Check if there's a weapon
         int hit = 0;
-        hit = roll(1,20,equippedWeapon.getWeaponDamageModifier());
+        hit = roll(20,1,equippedWeapon.getWeaponDamageModifier());
       return hit;
     }
 

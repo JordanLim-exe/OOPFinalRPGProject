@@ -6,6 +6,8 @@ import models.Item;
 import models.Map;
 import models.Player;
 
+import java.sql.SQLOutput;
+
 public class RPGDisplay {
 
     public static int startDisplay(boolean saveExists) {
@@ -123,7 +125,7 @@ public class RPGDisplay {
     }
 
     public static int printBattleMenu(Enemy enemy) {
-        System.out.println("You have encountered " + enemy.getName() + ". Choose one of the option below: ");
+        System.out.println("You have encountered " + enemy.getName() + "(" + enemy.getHp() + "). Choose one of the option below: ");
         String[] options = {
                 "Attack",
                 "Defend",
@@ -142,8 +144,26 @@ public class RPGDisplay {
         return ConsoleIO.promptForMenuSelection(options,true);
     }
 
+    public static void emptyArray() {
+        System.out.println("This selection is empty. Please Choose Something Else!");
+    }
+
+    public static void itemAdded(int type) {
+        if(type == 0) {
+            System.out.println("You received a Health Potion!");
+        }
+        else if(type == 1) {
+            System.out.println("You received a new Armor!");
+        }
+        else if(type == 2) {
+            System.out.println("You received a new Weapon!");
+        }
+        else {
+            System.out.println("You didn't get anything!");
+        }
+    }
+
     public static void displayMessage(String msg) {
         System.out.println(msg);
     }
-
 }
