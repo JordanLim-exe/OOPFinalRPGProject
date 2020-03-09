@@ -40,7 +40,7 @@ public class Player extends RPGCharacter implements IActionable{
             equipInventory[index] = currentArmor;
         }
 
-        }
+    }
 
     public void useItem(int index) {
         if (useInventory[index].getClass().getSimpleName().equals("Potion")) {

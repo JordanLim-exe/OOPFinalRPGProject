@@ -4,14 +4,16 @@ import models.*;
 import view.RPGDisplay;
 
 import java.io.*;
+import java.util.Random;
 
 public class RPGController {
 
     private static Player player1 = new Player();
     private static Enemy currentEnemy;
-    private static Map map;
+    private static Map map = new Map();
     private static boolean gameContinues = true;
     private static Game saveState;
+    private static String[] enemyNames = {"Slime", "Goblin", "Hobgoblin", "Skeleton", "Sexy Goblin?", "'B' Swarm", "Orca"};
 
     public static void run() {
         runStartUp();
@@ -70,13 +72,16 @@ public class RPGController {
             }
         }
         else {
-            map.movePlayer(choice);
+            determineEncounter(map.movePlayer(choice));
         }
         return boolReturn;
     }
 
     public static void battleStart(int bossDifficulty) {
-
+        Random rand = new Random();
+        if(bossDifficulty == 0) {
+            //currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20 + 1, ))
+        }
     }
 
     public static void battleLoop() {
@@ -107,10 +112,58 @@ public class RPGController {
     }
 
     public static boolean menu() {
+        boolean endApp = false;
+        int userChoice = RPGDisplay.mainMenu();
+        if(userChoice == 0) {
+            endApp = true;
+        }
+        if(userChoice == 1) {
+            player1.changeEquipment(RPGDisplay.promptEquip(player1));
+        }
+        if(userChoice == 2) {
+            useItem();
+        }
+        return endApp;
+    }
 
+    public static void useItem() {
+        //RPGDisplay.promptForConsumable(player1.)
+    }
+
+    public static void determineEncounter(String tile) {
+        if(tile.equals("D")) {
+            battleStart(3);
+        }
+        else {
+            if (tile.equals("T") || tile.equals("W")) {
+                player1.setHp(50);
+            }
+            else {
+                Random rand = new Random();
+                int chance = rand.nextInt(20) + 1;
+                switch (tile) {
+                    case "~":
+                        if (chance > 12) {
+                            battleStart(0);
+                        }
+                        break;
+                    case "*":
+                        if (chance > 12) {
+                            battleStart(1);
+                        }
+                        break;
+                    case "-":
+                        if (chance > 12) {
+                            battleStart(2);
+                        }
+                        break;
+                }
+            }
+        }
     }
 
     public static void test() {
 
     }
+
 }
