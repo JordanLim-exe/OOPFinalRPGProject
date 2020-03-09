@@ -1,6 +1,7 @@
 package view;
 
 import lib.ConsoleIO;
+import models.Enemy;
 import models.Item;
 import models.Map;
 import models.Player;
@@ -121,8 +122,8 @@ public class RPGDisplay {
         return direction;
     }
 
-    public static int printBattleMenu() {
-        System.out.println("You have encountered an enemy. Choose one of the option below: ");
+    public static int printBattleMenu(Enemy enemy) {
+        System.out.println("You have encountered " + enemy.getName() + ". Choose one of the option below: ");
         String[] options = {
                 "Attack",
                 "Defend",

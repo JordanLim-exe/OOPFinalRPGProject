@@ -50,7 +50,7 @@ public class RPGController {
             gameContinues = false;
         }
         else if(choice == 1) {
-            player1 = new Player(RPGDisplay.promptForName());
+            player1 = new Player(RPGDisplay.promptForName(), 50, 5, 5);
             map.setPlayerPositionX(9);
             map.setPlayerPositionY(9);
         }
@@ -80,16 +80,20 @@ public class RPGController {
     public static void battleStart(int bossDifficulty) {
         Random rand = new Random();
         if(bossDifficulty == 0) {
-            //currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20 + 1, ))
+            currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20) + 1, rand.nextInt(10) + 5, rand.nextInt(10) + 5);
         }
     }
 
     public static void battleLoop() {
 
+
     }
 
     public static boolean result() {
-        return true;
+        if(player1.getHp() <= 0) {
+            gameContinues = false;
+        }
+        return gameContinues;
     }
 
     public static void runCreateSave() {
@@ -135,7 +139,7 @@ public class RPGController {
             battleStart(3);
         }
         else {
-            if (tile.equals("T") || tile.equals("W")) {
+            if (tile.equals("T") || tile.equals("W") || tile.equals("@")) {
                 player1.setHp(50);
             }
             else {
