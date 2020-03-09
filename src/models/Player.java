@@ -47,14 +47,17 @@ public class Player extends RPGCharacter implements IActionable, Serializable {
     }
 
     public void useItem(int index) {
-        if (useInventory[index].getClass().getSimpleName().equals("Potion")) {
-            Potion currentPotion = equippedPotion;
-            equippedPotion = (Potion) useInventory[index];
-            useInventory[index] = currentPotion;
-            hp = hp + 25;
+        if(index != 0) {
+            index--;
+            if (useInventory[index].getClass().getSimpleName().equals("Potion")) {
+                Potion currentPotion = equippedPotion;
+                equippedPotion = (Potion) useInventory[index];
+                useInventory[index] = currentPotion;
+                hp = hp + 25;
 
-            if (hp > 50) {
-                hp = 50;
+                if (hp > 50) {
+                    hp = 50;
+                }
             }
         }
     }

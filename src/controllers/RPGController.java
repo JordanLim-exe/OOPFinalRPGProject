@@ -26,7 +26,7 @@ public class RPGController {
             }
         }
 
-        if(player1.getHp() >= 1) {
+        if(player1.getHp() >= 1 && RPGDisplay.promptForSave()) {
             runCreateSave();
         }
     }
@@ -114,20 +114,20 @@ public class RPGController {
                         battleContinues = false;
                     }
                     else{
-                        player1.setHp(player1.getHp() - currentEnemy.attack());
+                        player1.takesDamage(currentEnemy.attack());
                     }
                 } else if (choice == 3) {
                     useItem();
-                    player1.setHp(player1.getHp() - currentEnemy.attack());
+                    player1.takesDamage(currentEnemy.attack());
                 } else if (choice == 2) {
                     player1.defend(currentEnemy.attack());
                 } else if (choice == 1) {
-                    currentEnemy.setHp(currentEnemy.getHp() - player1.attack());
+                    currentEnemy.takesDamage(player1.attack());
                     if (currentEnemy.getHp() <= 0) {
                         battleContinues = false;
                     }
                     else {
-                        player1.setHp(player1.getHp() - currentEnemy.attack());
+                        player1.takesDamage(currentEnemy.attack());
                     }
                 }
             }
