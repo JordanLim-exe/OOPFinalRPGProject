@@ -112,11 +112,15 @@ public class RPGDisplay {
         return ConsoleIO.promptForString("Please enter the name you would like to go by: ");
     }
 
+    public static Boolean promptForSave(){
+        return ConsoleIO.promptForBoolean("Would you like to save? Y/N: \n", "y", "n");
+    }
+
     public static String promptForDirection(Player p) {
         boolean isValid = false;
         String direction;
         do {
-            String prompt = p.getName() + "! Using wasd, please select the direction you would like to travel, or input 0 for the menu: ";
+            String prompt = p.getName() + ", Using wasd, please select the direction you would like to travel, or input 0 for the menu: ";
             direction = ConsoleIO.promptForString(prompt);
             if(direction.trim().equals("w")||direction.trim().equals("a")||direction.trim().equals("s")||direction.trim().equals("d")||direction.trim().equals("0")){
                 isValid=true;
@@ -130,7 +134,7 @@ public class RPGDisplay {
     }
 
     public static int printBattleMenu(Enemy enemy, Player player) {
-        System.out.println("You have encountered " + enemy.getName() + "(" + enemy.getHp() + "). You have " + player.getHp() + " HP remaining, Choose one of the option below: ");
+        System.out.println("\nYou have encountered " + enemy.getName() + "(" + enemy.getHp() + "). You have " + player.getHp() + " HP remaining, Choose one of the option below: ");
         String[] options = {
                 "Attack",
                 "Defend",
