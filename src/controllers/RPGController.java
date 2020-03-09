@@ -87,16 +87,16 @@ public class RPGController {
     public static void battleStart(int bossDifficulty) {
         Random rand = new Random();
         if(bossDifficulty == 0) {
-            currentEnemy = new Enemy("Lesser " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 1, rand.nextInt(10), rand.nextInt(10) + 5);
+            currentEnemy = new Enemy("Lesser " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 1, rand.nextInt(10), rand.nextInt(2) + 1);
         }
         else if(bossDifficulty == 1) {
-            currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20) + 10, rand.nextInt(10) + 5, rand.nextInt(10) + 5);
+            currentEnemy = new Enemy(enemyNames[rand.nextInt(7)], rand.nextInt(20) + 10, rand.nextInt(10) + 5, rand.nextInt(2) + 2);
         }
         else if(bossDifficulty == 2) {
-            currentEnemy = new Enemy("Greater " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 20, rand.nextInt(10) + 7, rand.nextInt(10) + 10);
+            currentEnemy = new Enemy("Greater " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 20, rand.nextInt(10) + 7, rand.nextInt(4) + 2);
         }
         else if(bossDifficulty == 3) {
-            currentEnemy = new Enemy("Boss " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 40, rand.nextInt(10) + 10, rand.nextInt(10) + 15);
+            currentEnemy = new Enemy("Boss " + enemyNames[rand.nextInt(7)], rand.nextInt(20) + 40, rand.nextInt(10) + 10, rand.nextInt(6) + 3);
         }
         battleLoop();
     }
