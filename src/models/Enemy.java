@@ -17,8 +17,8 @@ public class Enemy extends RPGCharacter implements IActionable {
     }
 
     @Override
-    public int defend(int attack) {
-       return hp - (attack / 2);
+    public void defend(int attack) {
+       hp = hp - (attack / 2);
     }
 
     @Override

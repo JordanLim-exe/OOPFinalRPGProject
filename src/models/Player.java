@@ -50,9 +50,7 @@ public class Player extends RPGCharacter implements IActionable, Serializable {
         if(index != 0) {
             index--;
             if (useInventory[index].getClass().getSimpleName().equals("Potion")) {
-                Potion currentPotion = equippedPotion;
-                equippedPotion = (Potion) useInventory[index];
-                useInventory[index] = currentPotion;
+                useInventory[index] = null;
                 hp = hp + 25;
 
                 if (hp > 50) {

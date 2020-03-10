@@ -225,8 +225,12 @@ public class RPGController {
     }
 
     public static void useItem() {
-        int choice = RPGDisplay.promptForConsumable(player1);
-        player1.useItem(choice);
+        try {
+            int choice = RPGDisplay.promptForConsumable(player1);
+            player1.useItem(choice);
+        } catch(NullPointerException npe){
+            RPGDisplay.displayMessage("You can't drink something that doesn't exist");
+        }
     }
 
     public static void determineEncounter(String tile) {
