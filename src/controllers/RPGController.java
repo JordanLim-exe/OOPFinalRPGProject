@@ -128,6 +128,7 @@ public class RPGController {
                     currentEnemy.takesDamage(player1.attack());
                     if (currentEnemy.getHp() <= 0) {
                         battleContinues = false;
+                        RPGDisplay.displayMessage("You have defeated the " + currentEnemy.getName());
                     }
                     else {
                         player1.takesDamage(currentEnemy.attack());
@@ -230,11 +231,13 @@ public class RPGController {
 
     public static void determineEncounter(String tile) {
         if(tile.equals("D")) {
+            RPGDisplay.displayMessage("You have entered the dungeon where the most difficult enemies reside!");
             battleStart(3);
         }
         else {
             if (tile.equals("T") || tile.equals("W") || tile.equals("@")) {
                 player1.setHp(50);
+                RPGDisplay.displayMessage("You have been healed to full by visiting civilization");
             }
             else {
                 Random rand = new Random();
