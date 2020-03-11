@@ -20,7 +20,7 @@ public class Potion extends Item implements Serializable {
 
     @Override
     public String toString() {
-        return "(Potion)" + super.toString() + "." +
-                " It also has an attribute modifier of " + getAttributeModifier();
+        return "(Potion)" + super.toString() + ".";
+
     }
 }

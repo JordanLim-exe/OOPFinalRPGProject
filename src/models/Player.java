@@ -14,7 +14,7 @@ public class Player extends RPGCharacter implements IActionable, Serializable {
     private Item[] useInventory = new Item[10];
     private Weapon equippedWeapon;
     private Armor equippedArmor;
-    private Potion equippedPotion;
+
 
     public Player() {
     }
