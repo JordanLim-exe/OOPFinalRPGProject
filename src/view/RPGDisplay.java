@@ -97,10 +97,10 @@ public class RPGDisplay {
         int counter = 0;
         for(Item i : p.getUseInventory()){
             if(i == null) {
-                System.out.println("N/A");
+                //System.out.println("N/A");
             }
             else {
-                System.out.println(i.toString());
+                //System.out.println(i.toString());
                 options[counter] = i.toString();
             }
             counter++;
