@@ -72,6 +72,7 @@ public class RPGController {
 
     public static boolean runTurn() {
         boolean boolReturn = true;
+        System.out.println("\nLegend:" + "\n# = Path" + "\n~ = Zone 1" + "\n* = Zone 2" + "\n- = Zone 3" + "\n@ = Center Town" + "\nT = Town" + "\nW = Watchtower" + "\nD = Dungeon" + "\nP = Player");
         RPGDisplay.printMap(map);
         //Small update needed to fix commits
         String choice = RPGDisplay.promptForDirection(player1);
